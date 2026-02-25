@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <style>
     :root {
       --bg: #FAF7F2;
@@ -28,9 +27,7 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--font-body);
       background: var(--bg);
@@ -65,7 +62,6 @@
       text-decoration: none; transition: color 0.25s; letter-spacing: 0.2px;
     }
     .nav-links a:hover { color: var(--accent); }
-
     .cart-btn {
       position: relative; background: none; border: none;
       cursor: pointer; padding: 6px;
@@ -106,8 +102,7 @@
     .hero-tag {
       font-size: 0.8rem; font-weight: 600;
       letter-spacing: 3px; text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 16px;
+      color: rgba(255,255,255,0.7); margin-bottom: 16px;
       animation: fadeUp 0.8s ease both 0.2s;
     }
     .hero-title {
@@ -140,16 +135,13 @@
       box-shadow: 0 6px 28px rgba(212,98,43,0.45);
     }
     .hero-cta svg { width: 18px; height: 18px; }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(28px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
     /* ─── SECTIONS ─── */
-    .section-header {
-      text-align: center; margin-bottom: 48px;
-    }
+    .section-header { text-align: center; margin-bottom: 48px; }
     .section-label {
       font-size: 0.75rem; font-weight: 700;
       letter-spacing: 3px; text-transform: uppercase;
@@ -166,76 +158,48 @@
       padding: 80px 24px 60px;
       max-width: 1200px; margin: 0 auto;
     }
-
-    .carousel-wrapper {
-      position: relative;
-    }
+    .carousel-wrapper { position: relative; }
     .carousel {
       display: flex; gap: 24px;
       overflow-x: auto; scroll-snap-type: x mandatory;
-      padding: 8px 4px 24px;
-      scrollbar-width: none;
+      padding: 8px 4px 24px; scrollbar-width: none;
     }
     .carousel::-webkit-scrollbar { display: none; }
-
     .product-card {
       flex: 0 0 280px; scroll-snap-align: start;
       background: var(--surface);
       border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--border);
+      overflow: hidden; border: 1px solid var(--border);
       transition: transform 0.35s, box-shadow 0.35s;
     }
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .product-img-wrap {
       width: 100%; aspect-ratio: 1/1;
       overflow: hidden; background: #f0ece6;
     }
     .product-img-wrap img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.5s;
+      width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;
     }
-    .product-card:hover .product-img-wrap img {
-      transform: scale(1.08);
-    }
-    .product-info {
-      padding: 20px;
-    }
-    .product-name {
-      font-weight: 700; font-size: 1rem;
-      margin-bottom: 6px; letter-spacing: -0.2px;
-    }
-    .product-price {
-      font-family: var(--font-display);
-      font-size: 1.25rem; color: var(--accent);
-      margin-bottom: 16px;
-    }
+    .product-card:hover .product-img-wrap img { transform: scale(1.08); }
+    .product-info { padding: 20px; }
+    .product-name { font-weight: 700; font-size: 1rem; margin-bottom: 6px; letter-spacing: -0.2px; }
+    .product-price { font-family: var(--font-display); font-size: 1.25rem; color: var(--accent); margin-bottom: 16px; }
     .add-cart-btn {
       width: 100%; padding: 12px;
       background: var(--text); color: #fff;
       border: none; border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.85rem; font-weight: 700;
-      cursor: pointer; transition: background 0.25s, transform 0.25s;
-      letter-spacing: 0.3px;
+      font-family: var(--font-body); font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; transition: background 0.25s, transform 0.25s; letter-spacing: 0.3px;
     }
     .add-cart-btn:hover { background: var(--accent); transform: scale(1.02); }
-    .add-cart-btn.added {
-      background: #2E7D32; pointer-events: none;
-    }
-
+    .add-cart-btn.added { background: #2E7D32; pointer-events: none; }
     .carousel-nav {
       position: absolute; top: 50%; transform: translateY(-70%);
       width: 44px; height: 44px;
       background: var(--surface); border: 1px solid var(--border);
       border-radius: 50%; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.25s, box-shadow 0.25s;
-      z-index: 2;
+      box-shadow: var(--shadow-md); transition: transform 0.25s, box-shadow 0.25s; z-index: 2;
     }
     .carousel-nav:hover { transform: translateY(-70%) scale(1.08); box-shadow: var(--shadow-lg); }
     .carousel-nav svg { width: 20px; height: 20px; stroke: var(--text); }
@@ -243,27 +207,13 @@
     .carousel-next { right: -16px; }
 
     /* ─── ABOUT ─── */
-    #about {
-      padding: 60px 24px 80px;
-      max-width: 700px; margin: 0 auto; text-align: center;
-    }
-    #about p {
-      font-size: 1.05rem; line-height: 1.8;
-      color: var(--text-muted); margin-top: 16px;
-    }
+    #about { padding: 60px 24px 80px; max-width: 700px; margin: 0 auto; text-align: center; }
+    #about p { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); margin-top: 16px; }
 
     /* ─── CONTACT ─── */
-    #contact {
-      padding: 60px 24px 80px;
-      max-width: 600px; margin: 0 auto; text-align: center;
-    }
-    .contact-info {
-      margin-top: 24px;
-      font-size: 1rem; color: var(--text-muted); line-height: 2;
-    }
-    .contact-info a {
-      color: var(--accent); text-decoration: none; font-weight: 600;
-    }
+    #contact { padding: 60px 24px 80px; max-width: 600px; margin: 0 auto; text-align: center; }
+    .contact-info { margin-top: 24px; font-size: 1rem; color: var(--text-muted); line-height: 2; }
+    .contact-info a { color: var(--accent); text-decoration: none; font-weight: 600; }
     .contact-info a:hover { text-decoration: underline; }
 
     /* ─── FOOTER ─── */
@@ -277,124 +227,81 @@
     /* ─── CART DRAWER ─── */
     .cart-overlay {
       position: fixed; inset: 0; z-index: 200;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(4px);
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.35s, visibility 0.35s;
+      background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);
+      opacity: 0; visibility: hidden; transition: opacity 0.35s, visibility 0.35s;
     }
     .cart-overlay.open { opacity: 1; visibility: visible; }
-
     .cart-drawer {
       position: fixed; top: 0; right: 0; bottom: 0;
       width: 420px; max-width: 92vw; z-index: 201;
-      background: var(--bg);
-      box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+      background: var(--bg); box-shadow: -10px 0 40px rgba(0,0,0,0.15);
       transform: translateX(100%);
       transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-      display: flex; flex-direction: column;
-      overflow-y: auto;
+      display: flex; flex-direction: column; overflow-y: auto;
     }
     .cart-drawer.open { transform: translateX(0); }
-
     .cart-header {
       display: flex; align-items: center; justify-content: space-between;
       padding: 24px; border-bottom: 1px solid var(--border);
       position: sticky; top: 0; background: var(--bg); z-index: 1;
     }
-    .cart-header h2 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-    }
-    .close-cart {
-      background: none; border: none; cursor: pointer;
-      padding: 4px;
-    }
+    .cart-header h2 { font-family: var(--font-display); font-size: 1.4rem; }
+    .close-cart { background: none; border: none; cursor: pointer; padding: 4px; }
     .close-cart svg { width: 24px; height: 24px; stroke: var(--text); }
-
     .cart-items { flex: 1; padding: 16px 24px; }
-
-    .cart-empty {
-      text-align: center; padding: 60px 20px;
-      color: var(--text-muted);
-    }
-    .cart-empty svg {
-      width: 60px; height: 60px; stroke: var(--border);
-      margin-bottom: 16px;
-    }
+    .cart-empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
+    .cart-empty svg { width: 60px; height: 60px; stroke: var(--border); margin-bottom: 16px; }
     .cart-empty p { font-size: 0.95rem; }
-
     .cart-item {
       display: flex; gap: 14px; align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 14px 0; border-bottom: 1px solid var(--border);
       animation: slideIn 0.3s ease;
     }
     @keyframes slideIn {
       from { opacity: 0; transform: translateX(20px); }
       to { opacity: 1; transform: translateX(0); }
     }
-    .cart-item-img {
-      width: 56px; height: 56px; border-radius: var(--radius-sm);
-      object-fit: cover; flex-shrink: 0;
-    }
+    .cart-item-img { width: 56px; height: 56px; border-radius: var(--radius-sm); object-fit: cover; flex-shrink: 0; }
     .cart-item-details { flex: 1; }
     .cart-item-name { font-weight: 600; font-size: 0.9rem; }
     .cart-item-price { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
-    .cart-item-qty {
-      display: flex; align-items: center; gap: 10px; margin-top: 6px;
-    }
+    .cart-item-qty { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
     .qty-btn {
       width: 28px; height: 28px; border-radius: 50%;
       border: 1px solid var(--border); background: var(--surface);
       cursor: pointer; display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; font-weight: 600; color: var(--text);
-      transition: background 0.2s;
+      font-size: 1rem; font-weight: 600; color: var(--text); transition: background 0.2s;
     }
     .qty-btn:hover { background: var(--accent-light); }
     .qty-val { font-weight: 700; font-size: 0.9rem; min-width: 18px; text-align: center; }
-    .remove-item {
-      background: none; border: none; cursor: pointer; padding: 4px;
-    }
+    .remove-item { background: none; border: none; cursor: pointer; padding: 4px; }
     .remove-item svg { width: 18px; height: 18px; stroke: #c62828; }
 
     .cart-footer {
-      padding: 20px 24px;
-      border-top: 1px solid var(--border);
-      background: var(--bg);
-      position: sticky; bottom: 0;
+      padding: 20px 24px; border-top: 1px solid var(--border);
+      background: var(--bg); position: sticky; bottom: 0;
     }
     .cart-total {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 16px;
+      display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
     }
     .cart-total span:first-child { font-weight: 600; font-size: 0.95rem; }
-    .cart-total span:last-child {
-      font-family: var(--font-display);
-      font-size: 1.4rem; color: var(--accent);
-    }
+    .cart-total span:last-child { font-family: var(--font-display); font-size: 1.4rem; color: var(--accent); }
 
     /* ─── ORDER FORM ─── */
     .order-form { display: flex; flex-direction: column; gap: 12px; }
-    .form-field {
-      display: flex; flex-direction: column; gap: 4px;
-    }
+    .form-field { display: flex; flex-direction: column; gap: 4px; }
     .form-field label {
       font-size: 0.78rem; font-weight: 600; color: var(--text-muted);
       letter-spacing: 0.5px; text-transform: uppercase;
     }
     .form-field input {
-      padding: 12px 14px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      background: var(--surface);
-      transition: border-color 0.25s, box-shadow 0.25s;
-      outline: none;
+      padding: 12px 14px; border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-family: var(--font-body);
+      font-size: 0.9rem; background: var(--surface);
+      transition: border-color 0.25s, box-shadow 0.25s; outline: none;
     }
     .form-field input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(212,98,43,0.12);
+      border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,98,43,0.12);
     }
     .form-field input::placeholder { color: #bbb; }
 
@@ -402,22 +309,34 @@
       width: 100%; padding: 15px;
       background: var(--accent); color: #fff;
       border: none; border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.95rem; font-weight: 700;
-      cursor: pointer;
-      transition: background 0.25s, transform 0.25s;
-      letter-spacing: 0.3px;
-      margin-top: 4px;
+      font-family: var(--font-body); font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: background 0.25s, transform 0.25s;
+      letter-spacing: 0.3px; margin-top: 4px;
     }
     .send-order-btn:hover { background: var(--accent-hover); transform: scale(1.01); }
-    .send-order-btn:disabled {
-      opacity: 0.6; cursor: not-allowed; transform: none;
+    .send-order-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ─── SUCCESS STATE ─── */
+    .order-success {
+      display: none;
+      text-align: center;
+      padding: 20px 10px;
+      animation: fadeUp 0.5s ease both;
     }
+    .order-success .success-icon {
+      width: 56px; height: 56px; background: #E8F5E9;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; margin: 0 auto 16px;
+    }
+    .order-success .success-icon svg { width: 28px; height: 28px; stroke: #2E7D32; }
+    .order-success h3 {
+      font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 8px;
+    }
+    .order-success p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
+
     .form-msg {
-      text-align: center; font-size: 0.85rem;
-      margin-top: 8px; font-weight: 600;
+      text-align: center; font-size: 0.85rem; margin-top: 4px; font-weight: 600;
     }
-    .form-msg.success { color: #2E7D32; }
     .form-msg.error { color: #c62828; }
 
     /* ─── WHATSAPP FLOAT ─── */
@@ -427,13 +346,9 @@
       background: #25D366; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-      transition: transform 0.3s, box-shadow 0.3s;
-      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s; text-decoration: none;
     }
-    .wa-float:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
-    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); }
     .wa-float svg { width: 30px; height: 30px; fill: #fff; }
 
     /* ─── TOAST ─── */
@@ -441,17 +356,12 @@
       position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
       background: var(--text); color: #fff;
       padding: 14px 28px; border-radius: 50px;
-      font-size: 0.88rem; font-weight: 600;
-      z-index: 300; opacity: 0;
+      font-size: 0.88rem; font-weight: 600; z-index: 300; opacity: 0;
       transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.4s;
       pointer-events: none;
     }
-    .toast.show {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-    /* ─── RESPONSIVE ─── */
     @media (max-width: 600px) {
       .nav-links a:not(.cart-btn-wrap) { display: none; }
       .product-card { flex: 0 0 240px; }
@@ -485,7 +395,7 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img class="hero-img" src="https://i.ibb.co/bR8R0BvV/IMG-0895.jpg" alt="The Local Shop" />
+    <img class="hero-img" src="https://i.ibb.co/DH67m9pd/Screenshot-From-2026-02-25-23-49-04.png" alt="The Local Shop" />
     <div class="hero-overlay">
       <p class="hero-tag">Est. Since Always</p>
       <h1 class="hero-title">The Local Shop</h1>
@@ -509,9 +419,7 @@
       <button class="carousel-nav carousel-prev" onclick="scrollCarousel(-1)">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
-      <div class="carousel" id="carousel">
-        <!-- Cards inserted by JS -->
-      </div>
+      <div class="carousel" id="carousel"></div>
       <button class="carousel-nav carousel-next" onclick="scrollCarousel(1)">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
@@ -555,14 +463,16 @@
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    <div class="cart-items" id="cartItems">
-      <!-- Dynamic -->
-    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
     <div class="cart-footer" id="cartFooter" style="display:none;">
       <div class="cart-total">
         <span>Total</span>
         <span id="cartTotal">₹0</span>
       </div>
+
+      <!-- ORDER FORM -->
       <div class="order-form" id="orderForm">
         <div class="form-field">
           <label>Your Name</label>
@@ -579,13 +489,24 @@
         <button class="send-order-btn" id="sendOrderBtn" onclick="sendOrder()">
           📩 Send Order
         </button>
-        <p class="form-msg" id="formMsg"></p>
+        <p class="form-msg error" id="formMsg"></p>
+      </div>
+
+      <!-- SUCCESS STATE (hidden until order sent) -->
+      <div class="order-success" id="orderSuccess">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <h3>Order Request Sent!</h3>
+        <p>We've received your order and will contact you on WhatsApp or phone shortly to confirm what's available.</p>
       </div>
     </div>
   </div>
 
   <!-- WHATSAPP FLOAT -->
-  <a class="wa-float" href="https://wa.me/99999999" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <a class="wa-float" href="https://wa.me/99999999?text=Hi%2C%20I%20just%20placed%20an%20order%20on%20your%20website!" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
     <svg viewBox="0 0 32 32"><path d="M16.004 0h-.008C7.174 0 0 7.176 0 16.004c0 3.5 1.128 6.744 3.046 9.378L1.054 31.29l6.118-1.958A15.9 15.9 0 0016.004 32C24.826 32 32 24.826 32 16.004 32 7.176 24.826 0 16.004 0zm9.302 22.594c-.39 1.1-2.282 2.04-3.15 2.1-.79.056-1.536.376-5.178-1.08-4.396-1.754-7.164-6.27-7.38-6.562-.21-.286-1.74-2.312-1.74-4.412s1.1-3.13 1.49-3.558c.39-.428.852-.534.136-.534l.916.012c.286 0 .67-.11 1.048.8.39.934 1.326 3.238 1.442 3.472.118.234.196.506.04.806-.156.306-.234.496-.468.762-.234.27-.492.6-.702.806-.234.228-.478.476-.206.934.272.458 1.21 1.998 2.6 3.236 1.784 1.588 3.286 2.08 3.752 2.314.466.234.738.196 1.01-.118.272-.312 1.166-1.36 1.478-1.828.312-.468.624-.39 1.052-.234.428.156 2.726 1.286 3.194 1.52.466.234.778.35.896.546.118.196.118 1.134-.272 2.228z"/></svg>
   </a>
 
@@ -595,20 +516,19 @@
   <script>
     // ─── PRODUCT DATA ───
     const products = [
-      { id: 1, name: "Fresh Grocery Pack", price: 299, img: "https://i.ibb.co/yFr0P33p/image.jpg" },
-      { id: 2, name: "Daily Essentials Kit", price: 499, img: "https://i.ibb.co/chKzpf73/image.jpg" },
-      { id: 3, name: "Premium Snack Box", price: 199, img: "https://i.ibb.co/PG9tSjFw/image.jpg" },
-      { id: 4, name: "Household Combo", price: 349, img: "https://i.ibb.co/yFr0P33p/image.jpg" },
-      { id: 5, name: "Weekend Special", price: 599, img: "https://i.ibb.co/chKzpf73/image.jpg" },
-      { id: 6, name: "Breakfast Bundle", price: 249, img: "https://i.ibb.co/PG9tSjFw/image.jpg" },
+      { id: 1, name: "Fresh Grocery Pack",   price: 299, img: "https://i.ibb.co/yFr0P33p/image.jpg" },
+      { id: 2, name: "Daily Essentials Kit",  price: 499, img: "https://i.ibb.co/chKzpf73/image.jpg" },
+      { id: 3, name: "Premium Snack Box",     price: 199, img: "https://i.ibb.co/PG9tSjFw/image.jpg" },
+      { id: 4, name: "Household Combo",       price: 349, img: "https://i.ibb.co/yFr0P33p/image.jpg" },
+      { id: 5, name: "Weekend Special",       price: 599, img: "https://i.ibb.co/chKzpf73/image.jpg" },
+      { id: 6, name: "Breakfast Bundle",      price: 249, img: "https://i.ibb.co/PG9tSjFw/image.jpg" },
     ];
 
     let cart = [];
 
     // ─── RENDER PRODUCTS ───
     function renderProducts() {
-      const carousel = document.getElementById("carousel");
-      carousel.innerHTML = products.map(p => `
+      document.getElementById("carousel").innerHTML = products.map(p => `
         <div class="product-card">
           <div class="product-img-wrap">
             <img src="${p.img}" alt="${p.name}" loading="lazy" />
@@ -622,32 +542,22 @@
       `).join("");
     }
 
-    // ─── CAROUSEL SCROLL ───
+    // ─── CAROUSEL ───
     function scrollCarousel(dir) {
-      const c = document.getElementById("carousel");
-      c.scrollBy({ left: dir * 300, behavior: "smooth" });
+      document.getElementById("carousel").scrollBy({ left: dir * 300, behavior: "smooth" });
     }
 
     // ─── CART LOGIC ───
     function addToCart(id) {
       const existing = cart.find(i => i.id === id);
-      if (existing) {
-        existing.qty++;
-      } else {
-        const product = products.find(p => p.id === id);
-        cart.push({ ...product, qty: 1 });
-      }
+      if (existing) existing.qty++;
+      else cart.push({ ...products.find(p => p.id === id), qty: 1 });
       updateCartUI();
       showToast("Added to cart!");
-
-      // button feedback
       const btn = document.getElementById(`btn-${id}`);
       btn.textContent = "✓ Added";
       btn.classList.add("added");
-      setTimeout(() => {
-        btn.textContent = "Add to Cart";
-        btn.classList.remove("added");
-      }, 1200);
+      setTimeout(() => { btn.textContent = "Add to Cart"; btn.classList.remove("added"); }, 1200);
     }
 
     function removeFromCart(id) {
@@ -659,20 +569,17 @@
       const item = cart.find(i => i.id === id);
       if (!item) return;
       item.qty += delta;
-      if (item.qty <= 0) {
-        removeFromCart(id);
-        return;
-      }
-      updateCartUI();
+      if (item.qty <= 0) removeFromCart(id);
+      else updateCartUI();
     }
 
     function updateCartUI() {
-      const countEl = document.getElementById("cartCount");
       const totalCount = cart.reduce((s, i) => s + i.qty, 0);
+      const countEl = document.getElementById("cartCount");
       countEl.textContent = totalCount;
       countEl.classList.toggle("visible", totalCount > 0);
 
-      const itemsEl = document.getElementById("cartItems");
+      const itemsEl  = document.getElementById("cartItems");
       const footerEl = document.getElementById("cartFooter");
 
       if (cart.length === 0) {
@@ -705,13 +612,15 @@
             </div>
           </div>
           <button class="remove-item" onclick="removeFromCart(${i.id})">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
           </button>
         </div>
       `).join("");
     }
 
-    // ─── CART DRAWER TOGGLE ───
+    // ─── CART TOGGLE ───
     function toggleCart() {
       document.getElementById("cartOverlay").classList.toggle("open");
       document.getElementById("cartDrawer").classList.toggle("open");
@@ -719,73 +628,86 @@
         document.getElementById("cartDrawer").classList.contains("open") ? "hidden" : "";
     }
 
-    // ─── EMAILJS INTEGRATION ───
-    // IMPORTANT: Replace these with your actual EmailJS credentials
-    // 1. Sign up at https://www.emailjs.com (free tier = 200 emails/month)
-    // 2. Create an Email Service (e.g., connect your Gmail)
-    // 3. Create an Email Template with these variables:
-    //    {{customer_name}}, {{customer_phone}}, {{customer_address}}, {{order_items}}, {{order_total}}
-    // 4. Replace the IDs below:
-
-    const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";      // from EmailJS dashboard → Account → API Keys
-    const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";      // from EmailJS dashboard → Email Services
-    const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";    // from EmailJS dashboard → Email Templates
-
-    (function() {
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-    })();
-
+    // ─── SEND ORDER VIA FORMSPREE ───
     async function sendOrder() {
-      const name = document.getElementById("custName").value.trim();
-      const phone = document.getElementById("custPhone").value.trim();
+      const name    = document.getElementById("custName").value.trim();
+      const phone   = document.getElementById("custPhone").value.trim();
       const address = document.getElementById("custAddress").value.trim();
-      const msgEl = document.getElementById("formMsg");
-      const btn = document.getElementById("sendOrderBtn");
+      const msgEl   = document.getElementById("formMsg");
+      const btn     = document.getElementById("sendOrderBtn");
+
+      msgEl.textContent = "";
 
       if (!name || !phone) {
         msgEl.textContent = "Please enter your name and phone number.";
-        msgEl.className = "form-msg error";
         return;
       }
       if (cart.length === 0) {
         msgEl.textContent = "Your cart is empty!";
-        msgEl.className = "form-msg error";
         return;
       }
 
       btn.disabled = true;
       btn.textContent = "Sending...";
 
-      const itemsList = cart.map(i => `• ${i.name} × ${i.qty} = ₹${i.price * i.qty}`).join("\n");
-      const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const total     = cart.reduce((s, i) => s + i.price * i.qty, 0);
+      const itemLines = cart.map(i =>
+        `  • ${i.name}  ×${i.qty}  =  ₹${i.price * i.qty}`
+      ).join("\n");
 
-      const templateParams = {
-        customer_name: name,
-        customer_phone: phone,
-        customer_address: address || "Not provided",
-        order_items: itemsList,
-        order_total: `₹${total}`,
-        to_email: "thelocalshop@gmail.com",
-      };
+      // Human-readable message that appears in the Formspree email
+      const emailBody = `
+🛍️  YOU'VE GOT A NEW ORDER REQUEST!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤  Customer Name  : ${name}
+📞  Phone / WA     : ${phone}
+📍  Address / Notes: ${address || "Not provided"}
+
+🧾  ORDER ITEMS:
+${itemLines}
+
+💰  Order Total    : ₹${total}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Please confirm availability via WhatsApp or phone call.
+      `.trim();
 
       try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
-        msgEl.textContent = "Order sent successfully! We'll contact you shortly.";
-        msgEl.className = "form-msg success";
-        cart = [];
-        updateCartUI();
-        document.getElementById("custName").value = "";
-        document.getElementById("custPhone").value = "";
-        document.getElementById("custAddress").value = "";
-        setTimeout(() => { toggleCart(); }, 2000);
-      } catch (err) {
-        console.error("EmailJS Error:", err);
-        msgEl.textContent = "Failed to send. Please try WhatsApp instead.";
-        msgEl.className = "form-msg error";
-      }
+        const res = await fetch("https://formspree.io/f/mjgepooj", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            subject:        "🛍️ New Order Request — The Local Shop",
+            customer_name:  name,
+            phone:          phone,
+            address:        address || "Not provided",
+            order_items:    cart.map(i => `${i.name} x${i.qty} @ ₹${i.price}`).join(" | "),
+            order_total:    `₹${total}`,
+            message:        emailBody,   // ← full readable email body
+          })
+        });
 
-      btn.disabled = false;
-      btn.textContent = "📩 Send Order";
+        if (res.ok) {
+          // Show success state
+          document.getElementById("orderForm").style.display    = "none";
+          document.getElementById("orderSuccess").style.display = "block";
+          document.querySelector(".cart-total").style.display   = "none";
+          // Clear cart silently
+          cart = [];
+          document.getElementById("cartCount").textContent = "0";
+          document.getElementById("cartCount").classList.remove("visible");
+        } else {
+          const data = await res.json();
+          msgEl.textContent = data?.errors?.[0]?.message || "Something went wrong. Try WhatsApp instead!";
+          btn.disabled = false;
+          btn.textContent = "📩 Send Order";
+        }
+      } catch (err) {
+        msgEl.textContent = "Network error. Please try WhatsApp instead!";
+        btn.disabled = false;
+        btn.textContent = "📩 Send Order";
+      }
     }
 
     // ─── TOAST ───
