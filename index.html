@@ -166,6 +166,21 @@
         padding: 22px;
         position: relative;
         overflow: hidden;
+
+        /* HERO BACKGROUND IMAGE + DARK OVERLAY FOR READABILITY */
+        background-image:
+          linear-gradient(rgba(11,16,32,0.78), rgba(11,16,32,0.78)),
+          url("https://i.ibb.co/dw3QXPgZ/Screenshot-From-2026-02-25-23-49-04.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      @media (prefers-color-scheme: light) {
+        .hero-main {
+          background-image:
+            linear-gradient(rgba(247,248,251,0.78), rgba(247,248,251,0.78)),
+            url("https://i.ibb.co/dw3QXPgZ/Screenshot-From-2026-02-25-23-49-04.png");
+        }
       }
 
       .eyebrow {
@@ -843,7 +858,6 @@
                 ></textarea>
               </div>
 
-              <!-- Honeypot (spam trap): humans won't see/fill this -->
               <input
                 type="text"
                 name="_gotcha"
@@ -853,7 +867,6 @@
                 aria-hidden="true"
               />
 
-              <!-- Optional: subject line in the email you receive -->
               <input type="hidden" name="_subject" value="New portfolio message" />
 
               <button class="btn primary" id="contact-submit" type="submit">Send</button>
@@ -920,10 +933,8 @@
     </main>
 
     <script>
-      // tiny helper for the footer year
       document.getElementById("year").textContent = new Date().getFullYear();
 
-      // Formspree wiring (AJAX submit + inline success/error message)
       (function () {
         const form = document.getElementById("contact-form");
         const statusEl = document.getElementById("contact-status");
@@ -938,7 +949,6 @@
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
 
-          // Basic browser validation
           if (!form.checkValidity()) {
             form.reportValidity();
             return;
