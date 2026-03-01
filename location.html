@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-```
     body {
         font-family: 'Nunito', sans-serif;
         min-height: 100vh;
@@ -364,7 +362,6 @@
         75% { transform: translateX(8px); }
     }
 </style>
-```
 
 </head>
 <body>
@@ -516,13 +513,11 @@
                 var fullPhone = '91' + prefilledPhone;
                 var waURL = 'https://wa.me/' + fullPhone + '?text=' + encodeURIComponent(message);
 
+                btn.classList.remove('loading');
                 status.className = 'status success';
                 status.textContent = 'Location found! Opening WhatsApp...';
 
-                setTimeout(function() {
-                    btn.classList.remove('loading');
-                    window.open(waURL, '_blank');
-                }, 800);
+                window.location.href = waURL;
             },
             function(error) {
                 btn.classList.remove('loading');
@@ -586,7 +581,7 @@
     function shareViaWhatsApp() {
         var message = 'Hey! Use this link whenever you want to share your location with me on WhatsApp. Just open it and tap one button:\n\n' + generatedURL;
         var waURL = 'https://wa.me/?text=' + encodeURIComponent(message);
-        window.open(waURL, '_blank');
+        window.location.href = waURL;
     }
 
     document.addEventListener('DOMContentLoaded', function() {
