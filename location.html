@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share My Location</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+```
+    body {
+        font-family: 'Nunito', sans-serif;
+        min-height: 100vh;
+        background: #0f1923;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(37, 211, 102, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(0, 168, 232, 0.06) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(37, 211, 102, 0.04) 0%, transparent 70%);
+        animation: bgFloat 20s ease-in-out infinite;
+        z-index: 0;
+    }
+
+    @keyframes bgFloat {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        33% { transform: translate(2%, -2%) rotate(1deg); }
+        66% { transform: translate(-1%, 1%) rotate(-0.5deg); }
+    }
+
+    .container {
+        position: relative; z-index: 1;
+        width: 100%; max-width: 420px;
+        padding: 24px;
+        animation: fadeUp 0.8s ease-out;
+    }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .pin-wrapper { text-align: center; margin-bottom: 20px; }
+
+    .pin-icon {
+        display: inline-block;
+        position: relative;
+        animation: pinBounce 2s ease-in-out infinite;
+    }
+
+    .pin-icon svg { filter: drop-shadow(0 8px 20px rgba(37, 211, 102, 0.3)); }
+
+    @keyframes pinBounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .pin-shadow {
+        width: 40px; height: 8px;
+        background: rgba(37, 211, 102, 0.2);
+        border-radius: 50%;
+        margin: 4px auto 0;
+        animation: shadowPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes shadowPulse {
+        0%, 100% { transform: scaleX(1); opacity: 0.4; }
+        50% { transform: scaleX(0.7); opacity: 0.2; }
+    }
+
+    .pulse-ring {
+        position: absolute;
+        width: 60px; height: 60px;
+        border: 2px solid rgba(37, 211, 102, 0.3);
+        border-radius: 50%;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        animation: pulse 2s ease-out infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+        100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+    }
+
+    h1 {
+        font-family: 'Quicksand', sans-serif;
+        font-size: 28px; font-weight: 700;
+        color: #ffffff; text-align: center;
+        margin-bottom: 6px; letter-spacing: -0.5px;
+    }
+    h1 span { color: #25D366; }
+
+    .subtitle {
+        text-align: center; color: #7a8fa6;
+        font-size: 14px; font-weight: 600;
+        margin-bottom: 36px; line-height: 1.5;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        padding: 32px 24px;
+        backdrop-filter: blur(20px);
+        animation: fadeUp 0.8s ease-out 0.2s both;
+    }
+
+    .input-group { margin-bottom: 20px; }
+
+    .input-label {
+        display: block; color: #94a7bb;
+        font-size: 13px; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 1.2px;
+        margin-bottom: 10px;
+    }
+
+    .phone-input-wrapper {
+        display: flex; align-items: center;
+        background: rgba(255, 255, 255, 0.06);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px; padding: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .phone-input-wrapper:focus-within {
+        border-color: #25D366;
+        background: rgba(37, 211, 102, 0.05);
+        box-shadow: 0 0 0 4px rgba(37, 211, 102, 0.1);
+    }
+
+    .country-code {
+        color: #ffffff; font-size: 18px; font-weight: 700;
+        padding: 14px 4px 14px 16px;
+        white-space: nowrap; user-select: none;
+    }
+
+    .phone-input {
+        flex: 1; background: none; border: none; outline: none;
+        color: #ffffff; font-family: 'Nunito', sans-serif;
+        font-size: 18px; font-weight: 700;
+        padding: 14px 16px 14px 4px; letter-spacing: 1px;
+    }
+
+    .phone-input::placeholder { color: rgba(255, 255, 255, 0.2); font-weight: 600; }
+
+    .btn {
+        width: 100%; padding: 18px 24px;
+        border: none; border-radius: 16px;
+        font-family: 'Quicksand', sans-serif;
+        font-size: 17px; font-weight: 700;
+        cursor: pointer;
+        display: flex; align-items: center;
+        justify-content: center; gap: 10px;
+        transition: all 0.3s ease;
+        position: relative; overflow: hidden;
+        color: #ffffff;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute; top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .btn:hover::before { left: 100%; }
+
+    .btn-green { background: #25D366; }
+    .btn-green:hover { background: #1eba59; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35); }
+
+    .btn-blue { background: #0088cc; }
+    .btn-blue:hover { background: #006da3; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 136, 204, 0.35); }
+
+    .btn:active { transform: translateY(0); }
+    .btn.loading { pointer-events: none; opacity: 0.7; }
+
+    .spinner {
+        display: none;
+        width: 22px; height: 22px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+    }
+
+    .btn.loading .spinner { display: block; }
+    .btn.loading .btn-text,
+    .btn.loading .btn-icon { display: none; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .prefilled-number {
+        background: rgba(37, 211, 102, 0.08);
+        border: 1.5px solid rgba(37, 211, 102, 0.2);
+        border-radius: 14px;
+        padding: 16px 20px;
+        display: flex; align-items: center;
+        justify-content: center; gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .prefilled-number .num-label {
+        color: #7a8fa6; font-size: 13px;
+        font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+
+    .prefilled-number .num-value {
+        color: #25D366; font-size: 20px;
+        font-weight: 800; letter-spacing: 2px;
+    }
+
+    .link-result {
+        display: none;
+        margin-top: 20px;
+        animation: fadeUp 0.4s ease-out;
+    }
+
+    .link-result.show { display: block; }
+
+    .link-box {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1.5px dashed rgba(37, 211, 102, 0.3);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 14px;
+    }
+
+    .link-box .link-label {
+        color: #7a8fa6; font-size: 11px;
+        font-weight: 700; text-transform: uppercase;
+        letter-spacing: 1px; margin-bottom: 8px;
+    }
+
+    .link-box .link-text {
+        color: #25D366; font-size: 13px;
+        font-weight: 600; word-break: break-all;
+        line-height: 1.6; user-select: all;
+    }
+
+    .link-actions { display: flex; gap: 10px; }
+
+    .link-actions .btn {
+        flex: 1; padding: 14px 16px;
+        font-size: 14px; border-radius: 12px;
+    }
+
+    .btn-copy { background: rgba(255,255,255,0.08); }
+    .btn-copy:hover { background: rgba(255,255,255,0.14); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+
+    .btn-share { background: #25D366; }
+    .btn-share:hover { background: #1eba59; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35); }
+
+    .status {
+        text-align: center; margin-top: 16px;
+        font-size: 13px; font-weight: 600;
+        min-height: 20px; transition: all 0.3s ease;
+    }
+    .status.locating { color: #00a8e8; }
+    .status.error { color: #ff6b6b; }
+    .status.success { color: #25D366; }
+
+    .steps {
+        display: flex; justify-content: center;
+        gap: 24px; margin-top: 32px;
+        animation: fadeUp 0.8s ease-out 0.4s both;
+    }
+
+    .step { text-align: center; }
+
+    .step-num {
+        width: 36px; height: 36px;
+        border-radius: 50%;
+        background: rgba(37, 211, 102, 0.1);
+        border: 1.5px solid rgba(37, 211, 102, 0.3);
+        color: #25D366; font-size: 14px; font-weight: 800;
+        display: flex; align-items: center;
+        justify-content: center; margin: 0 auto 6px;
+    }
+
+    .step-text {
+        color: #5a7189; font-size: 11px;
+        font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer {
+        text-align: center; margin-top: 28px;
+        color: rgba(255,255,255,0.15);
+        font-size: 12px; font-weight: 600;
+        animation: fadeUp 0.8s ease-out 0.6s both;
+    }
+    .footer em { color: #ff6b6b; font-style: normal; }
+
+    .mode-badge {
+        text-align: center; margin-bottom: 20px;
+        animation: fadeUp 0.8s ease-out;
+    }
+
+    .mode-badge span {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 11px; font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+    }
+
+    .mode-badge .parent-badge {
+        background: rgba(37, 211, 102, 0.12);
+        color: #25D366;
+        border: 1px solid rgba(37, 211, 102, 0.25);
+    }
+
+    .mode-badge .child-badge {
+        background: rgba(0, 136, 204, 0.12);
+        color: #00a8e8;
+        border: 1px solid rgba(0, 136, 204, 0.25);
+    }
+
+    .or-divider {
+        display: flex; align-items: center;
+        gap: 12px; margin: 20px 0;
+    }
+
+    .or-divider::before,
+    .or-divider::after {
+        content: ''; flex: 1; height: 1px;
+        background: rgba(255,255,255,0.08);
+    }
+
+    .or-divider span {
+        color: #5a7189; font-size: 12px;
+        font-weight: 700; text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 380px) {
+        .container { padding: 16px; }
+        h1 { font-size: 24px; }
+        .card { padding: 24px 18px; }
+        .link-actions { flex-direction: column; }
+    }
+
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-8px); }
+        75% { transform: translateX(8px); }
+    }
+</style>
+```
+
+</head>
+<body>
+
+<div class="container">
+    <div class="pin-wrapper">
+        <div class="pin-icon">
+            <div class="pulse-ring"></div>
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+                <circle cx="28" cy="24" r="18" fill="#25D366" opacity="0.15"/>
+                <path d="M28 6C18.06 6 10 13.72 10 23.24C10 36.18 28 50 28 50C28 50 46 36.18 46 23.24C46 13.72 37.94 6 28 6ZM28 30C24.14 30 21 26.86 21 23C21 19.14 24.14 16 28 16C31.86 16 35 19.14 35 23C35 26.86 31.86 30 28 30Z" fill="#25D366"/>
+            </svg>
+        </div>
+        <div class="pin-shadow"></div>
+    </div>
+
+```
+<!-- PARENT MODE -->
+<div id="parentMode" class="hidden">
+    <div class="mode-badge"><span class="parent-badge">For Parents</span></div>
+    <h1>Share My <span>Location</span></h1>
+    <p class="subtitle">Tap the button below to send<br>your location to your child.</p>
+
+    <div class="card">
+        <div class="prefilled-number">
+            <span class="num-label">Sending to</span>
+            <span class="num-value" id="displayNumber"></span>
+        </div>
+
+        <button class="btn btn-green" id="sendBtnParent" onclick="shareLocation()">
+            <svg class="btn-icon" width="22" height="22" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            <span class="btn-text">Send My Location</span>
+            <div class="spinner"></div>
+        </button>
+
+        <div class="status" id="statusParent"></div>
+    </div>
+
+    <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-text">Tap Button</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text">Allow Location</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text">Sent!</div></div>
+    </div>
+</div>
+
+<!-- CHILD / SETUP MODE -->
+<div id="childMode" class="hidden">
+    <div class="mode-badge"><span class="child-badge">Setup for Your Parents</span></div>
+    <h1>Location <span>Link</span> Generator</h1>
+    <p class="subtitle">Enter your number below. Share the generated<br>link with your parents — one tap and done.</p>
+
+    <div class="card">
+        <div class="input-group">
+            <label class="input-label" for="phone">Your WhatsApp Number</label>
+            <div class="phone-input-wrapper">
+                <span class="country-code">+91</span>
+                <input type="tel" id="phone" class="phone-input" placeholder="98765 43210" maxlength="10" inputmode="numeric" pattern="[0-9]*" autocomplete="tel-national">
+            </div>
+        </div>
+
+        <button class="btn btn-blue" onclick="generateLink()">
+            <svg class="btn-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+            </svg>
+            <span class="btn-text">Generate Link</span>
+        </button>
+
+        <div class="link-result" id="linkResult">
+            <div class="or-divider"><span>Your Link</span></div>
+            <div class="link-box">
+                <div class="link-label">Share this with your parents</div>
+                <div class="link-text" id="generatedLink"></div>
+            </div>
+            <div class="link-actions">
+                <button class="btn btn-copy" onclick="copyLink()">
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    <span class="btn-text" id="copyBtnText">Copy</span>
+                </button>
+                <button class="btn btn-share" onclick="shareViaWhatsApp()">
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="white">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    <span class="btn-text">Share</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="status" id="statusChild"></div>
+    </div>
+
+    <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-text">Your Number</div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text">Get Link</div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text">Share with Parents</div></div>
+    </div>
+</div>
+
+<div class="footer">Made with <em>&#9829;</em> for families</div>
+```
+
+</div>
+
+<script>
+    var prefilledPhone = '';
+    var generatedURL = '';
+
+    function init() {
+        var params = new URLSearchParams(window.location.search);
+        var phone = params.get('phone');
+
+        if (phone && /^\d{10}$/.test(phone)) {
+            prefilledPhone = phone;
+            document.getElementById('parentMode').classList.remove('hidden');
+            document.getElementById('childMode').classList.add('hidden');
+            var formatted = phone.replace(/(\d{5})(\d{5})/, '$1 $2');
+            document.getElementById('displayNumber').textContent = '+91 ' + formatted;
+        } else {
+            document.getElementById('childMode').classList.remove('hidden');
+            document.getElementById('parentMode').classList.add('hidden');
+        }
+    }
+
+    function shareLocation() {
+        var btn = document.getElementById('sendBtnParent');
+        var status = document.getElementById('statusParent');
+
+        btn.classList.add('loading');
+        status.className = 'status locating';
+        status.textContent = 'Finding your location...';
+
+        if (!navigator.geolocation) {
+            btn.classList.remove('loading');
+            status.className = 'status error';
+            status.textContent = 'Location not supported on this browser';
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            function(position) {
+                var lat = position.coords.latitude;
+                var lng = position.coords.longitude;
+                var mapsLink = 'https://www.google.com/maps?q=' + lat + ',' + lng;
+                var message = 'Here is my current location:\n' + mapsLink;
+                var fullPhone = '91' + prefilledPhone;
+                var waURL = 'https://wa.me/' + fullPhone + '?text=' + encodeURIComponent(message);
+
+                status.className = 'status success';
+                status.textContent = 'Location found! Opening WhatsApp...';
+
+                setTimeout(function() {
+                    btn.classList.remove('loading');
+                    window.open(waURL, '_blank');
+                }, 800);
+            },
+            function(error) {
+                btn.classList.remove('loading');
+                status.className = 'status error';
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                        status.textContent = 'Please allow location access and try again';
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        status.textContent = 'Location unavailable. Please try again.';
+                        break;
+                    case error.TIMEOUT:
+                        status.textContent = 'Location timed out. Please try again.';
+                        break;
+                    default:
+                        status.textContent = 'Could not get location. Please try again.';
+                }
+            },
+            { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+    }
+
+    function generateLink() {
+        var phone = document.getElementById('phone').value.replace(/\s/g, '');
+        var status = document.getElementById('statusChild');
+
+        if (!phone || phone.length < 10) {
+            status.className = 'status error';
+            status.textContent = 'Please enter a valid 10-digit number';
+            var wrapper = document.querySelector('.phone-input-wrapper');
+            wrapper.style.animation = 'shake 0.4s ease';
+            setTimeout(function() { wrapper.style.animation = ''; }, 400);
+            return;
+        }
+
+        var baseURL = window.location.origin + window.location.pathname;
+        generatedURL = baseURL + '?phone=' + phone;
+
+        document.getElementById('generatedLink').textContent = generatedURL;
+        document.getElementById('linkResult').classList.add('show');
+        status.className = 'status success';
+        status.textContent = 'Link generated! Share it with your parents.';
+    }
+
+    function copyLink() {
+        navigator.clipboard.writeText(generatedURL).then(function() {
+            document.getElementById('copyBtnText').textContent = 'Copied!';
+            setTimeout(function() { document.getElementById('copyBtnText').textContent = 'Copy'; }, 2000);
+        }).catch(function() {
+            var textarea = document.createElement('textarea');
+            textarea.value = generatedURL;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            document.getElementById('copyBtnText').textContent = 'Copied!';
+            setTimeout(function() { document.getElementById('copyBtnText').textContent = 'Copy'; }, 2000);
+        });
+    }
+
+    function shareViaWhatsApp() {
+        var message = 'Hey! Use this link whenever you want to share your location with me on WhatsApp. Just open it and tap one button:\n\n' + generatedURL;
+        var waURL = 'https://wa.me/?text=' + encodeURIComponent(message);
+        window.open(waURL, '_blank');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        init();
+        var phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            });
+            phoneInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') generateLink();
+            });
+        }
+    });
+</script>
+
+</body>
+</html>
