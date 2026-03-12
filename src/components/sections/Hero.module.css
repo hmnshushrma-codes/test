@@ -1,0 +1,151 @@
+.hero {
+  min-height: 100vh; display: flex; align-items: center; padding: 6rem 2rem 4rem;
+  max-width: 1200px; margin: 0 auto; position: relative; gap: 3.5rem;
+}
+.heroLeft { flex: 1; max-width: 500px; position: relative; z-index: 2; }
+.heroRight { flex: 1.1; position: relative; z-index: 2; }
+
+.heroGlow {
+  position: absolute; top: 5%; right: -15%; width: 700px; height: 700px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 55%);
+  border-radius: 50%; pointer-events: none; filter: blur(120px);
+  animation: breathe 8s ease-in-out infinite; opacity: .4;
+}
+.heroGlow2 {
+  position: absolute; bottom: -10%; left: -10%; width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(0,240,160,.04) 0%, transparent 65%);
+  border-radius: 50%; pointer-events: none; filter: blur(80px);
+}
+
+.heroBadge {
+  display: inline-flex; align-items: center; gap: .5rem; font-size: .8rem;
+  letter-spacing: .1em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 2rem; font-weight: 500; opacity: 0; animation: fadeUp .6s ease forwards 1.8s;
+}
+.pulse {
+  width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.heroTitle {
+  font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5.5rem); font-weight: 400;
+  line-height: 1.08; letter-spacing: -.03em; margin-bottom: 1.5rem;
+  opacity: 0; animation: fadeUp .7s ease forwards 2s;
+}
+.line { display: block; }
+.heroTitle em { font-style: italic; color: var(--accent); }
+
+.heroSub {
+  font-size: 1.1rem; color: var(--text-mid); line-height: 1.75;
+  margin-bottom: 2.5rem; font-weight: 300; max-width: 460px;
+  opacity: 0; animation: fadeUp .7s ease forwards 2.2s;
+}
+
+.heroActions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0; animation: fadeUp .7s ease forwards 2.4s;
+}
+
+/* Terminal */
+.terminal {
+  background: #080808; border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; position: relative;
+  box-shadow: 0 24px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.02), 0 0 80px rgba(0,240,160,.02);
+  opacity: 0; animation: terminalIn .8s ease forwards 2.1s;
+}
+@keyframes terminalIn {
+  from { opacity: 0; transform: translateY(30px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.terminal::before {
+  content: ''; position: absolute; left: 0; top: 15%; width: 2px; height: 70%;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  opacity: .2; border-radius: 1px; z-index: 1;
+}
+
+.terminalBar {
+  display: flex; align-items: center; gap: 8px; padding: 14px 18px;
+  background: #0d0d0d; border-bottom: 1px solid rgba(255,255,255,.04);
+}
+.terminalDot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f57; }
+.yellow { background: #febc2e; }
+.green { background: #28c840; }
+.terminalTitle {
+  flex: 1; text-align: center; font-size: .72rem; color: var(--text-muted);
+  font-family: var(--mono); letter-spacing: .5px;
+}
+
+.terminalBody {
+  padding: 1.5rem 1.75rem; font-family: var(--mono); font-size: .82rem;
+  line-height: 2; min-height: 340px;
+}
+
+.tLine {
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.tLine.visible { opacity: 1; transform: translateX(0); }
+
+.tLinenum {
+  display: inline-block; width: 2rem; text-align: right; color: #222;
+  font-size: .72rem; margin-right: 1rem; user-select: none;
+}
+.tIndent { padding-left: 1.5rem; }
+.cursorBlink {
+  display: inline-block; width: 8px; height: 17px; background: var(--accent);
+  margin-left: 3px; animation: blink 1s step-end infinite;
+  vertical-align: text-bottom; border-radius: 1px;
+}
+
+/* Scroll hint */
+.scrollHint {
+  position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+  opacity: 0; animation: fadeUp .6s ease forwards 3.5s;
+  font-size: .75rem; color: var(--text-muted); letter-spacing: .1em;
+}
+.scrollLine {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+
+/* Keyframes must be local to CSS Modules */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: .3; transform: scale(1); }
+  50% { opacity: .6; transform: scale(1.08); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow-strong); }
+  50% { opacity: .6; box-shadow: 0 0 0 8px transparent; }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+@keyframes terminalIn {
+  from { opacity: 0; transform: translateY(30px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 900px) {
+  .hero { flex-direction: column; gap: 2.5rem; padding-top: 5rem; min-height: auto; padding-bottom: 6rem; }
+  .heroLeft { max-width: 100%; }
+  .terminalBody { font-size: .72rem; padding: 1.25rem 1rem; min-height: 280px; line-height: 1.9; }
+  .tLinenum { width: 1.5rem; font-size: .65rem; margin-right: .6rem; }
+}
+@media (max-width: 768px) {
+  .hero { padding: 5rem 1.5rem 3rem; }
+  .heroTitle { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+  .scrollHint { display: none; }
+}
+@media (max-width: 480px) {
+  .heroTitle { font-size: 2.25rem; }
+  .terminalBody { font-size: .65rem; padding: 1rem .75rem; }
+}

@@ -1,0 +1,160 @@
+/* ========= PROOF BAR ========= */
+.proofBar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem; text-align: center; }
+.proofInner { max-width: 900px; margin: 0 auto; }
+.proofStats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.proofStat { position: relative; padding: 0 2rem; }
+.proofStat:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 10%; height: 80%; width: 1px; background: var(--border); }
+.proofNum { font-size: 2.5rem; font-weight: 700; color: var(--text); line-height: 1.2; letter-spacing: -.02em; }
+.accentDot { color: var(--accent); }
+.proofDesc { font-size: .8rem; color: var(--text-muted); margin-top: .2rem; letter-spacing: .03em; }
+
+/* ========= VALUE ========= */
+.valueSection {
+  background: var(--bg-elevated); border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); padding: 6rem 2rem; margin: 0; max-width: 100%;
+}
+.valueInner { max-width: 1100px; margin: 0 auto; text-align: center; }
+.valueHeading {
+  font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 400;
+  line-height: 1.5; max-width: 700px; margin: 0 auto 3.5rem; color: var(--text-mid);
+}
+.valueHeading strong { color: var(--text); font-weight: 500; }
+.valueCards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+.valueCard { background: var(--bg-card); padding: 2.5rem 2rem; transition: background var(--transition); cursor: default; }
+.valueCard:hover { background: var(--bg-card-hover); }
+.valueCard:hover .vcIcon { transform: scale(1.15); color: var(--accent); }
+.vcIcon { font-size: 1.75rem; margin-bottom: 1.25rem; display: block; transition: transform var(--transition), color var(--transition); color: var(--text-mid); }
+.valueCard h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: .6rem; }
+.valueCard p { font-size: .9rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
+
+/* ========= SERVICES ========= */
+.servicesGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 3.5rem; }
+.serviceCard {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 2.5rem; transition: border-color var(--transition), transform .3s, box-shadow .4s;
+  position: relative; overflow: hidden; cursor: default;
+}
+.serviceCard::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--accent-glow) 0%, transparent 60%);
+  opacity: 0; transition: opacity .4s; pointer-events: none;
+}
+.serviceCard:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.3); }
+.serviceCard:hover::before { opacity: 1; }
+.scNumber { font-size: .75rem; font-weight: 600; color: var(--accent); opacity: .5; letter-spacing: .05em; }
+.serviceCard h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin: .75rem 0; transition: color var(--transition); }
+.serviceCard:hover h3 { color: var(--accent); }
+.serviceCard p { color: var(--text-muted); font-size: .95rem; line-height: 1.65; font-weight: 300; }
+.scTags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.5rem; }
+.scTags span {
+  font-size: .72rem; padding: .3rem .7rem; background: rgba(255,255,255,.03);
+  border: 1px solid var(--border); border-radius: 100px; color: var(--text-muted);
+  transition: border-color var(--transition), color var(--transition);
+}
+.serviceCard:hover .scTags span { border-color: var(--border-hover); color: var(--text-mid); }
+
+/* ========= PROCESS ========= */
+.processSection { padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
+.processTimeline { margin-top: 4rem; position: relative; }
+.processTimeline::before {
+  content: ''; position: absolute; left: 40px; top: 0; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, var(--accent), var(--border) 30%, var(--border) 70%, transparent);
+}
+.processStep { display: flex; gap: 2.5rem; padding: 2rem 0; align-items: flex-start; position: relative; }
+.psMarker {
+  width: 80px; height: 80px; border-radius: 50%; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-family: var(--serif);
+  font-size: 1.5rem; color: var(--text-muted); flex-shrink: 0; background: var(--bg);
+  transition: all var(--transition); position: relative; z-index: 2;
+}
+.processStep:hover .psMarker { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); }
+.psContent { padding-top: .75rem; }
+.psContent h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: .4rem; }
+.psContent p { color: var(--text-muted); font-size: .95rem; line-height: 1.65; font-weight: 300; max-width: 500px; }
+
+/* ========= STACK ========= */
+.stackSection {
+  background: var(--bg-elevated); border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border); padding: 5rem 2rem; margin: 0; max-width: 100%; overflow: hidden;
+}
+.stackInner { max-width: 1100px; margin: 0 auto; }
+.stackGrid { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2.5rem; }
+.stackChip {
+  padding: .55rem 1.2rem; border: 1px solid var(--border); border-radius: 100px;
+  font-size: .85rem; color: var(--text-muted); transition: all var(--transition);
+  cursor: default; position: relative; overflow: hidden;
+}
+.stackChip::before { content: ''; position: absolute; inset: 0; background: var(--accent-glow); opacity: 0; transition: opacity var(--transition); }
+.stackChip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 16px var(--accent-glow); }
+.stackChip:hover::before { opacity: 1; }
+
+/* ========= TESTIMONIAL ========= */
+.testimonialBlock { border-top: 1px solid var(--border); padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
+.testiContainer { position: relative; padding: 3rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
+.testiQuoteMark { font-family: var(--serif); font-size: 5rem; color: var(--accent); opacity: .15; line-height: 1; position: absolute; top: 1rem; left: 2rem; }
+.testiText { font-size: 1.15rem; font-weight: 300; line-height: 1.8; color: var(--text-mid); position: relative; z-index: 2; }
+.testiAuthor { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
+.testiAvatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-glow-strong), var(--bg-card));
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+}
+.testiMeta strong { display: block; font-weight: 500; font-size: .95rem; }
+.testiMeta span { font-size: .8rem; color: var(--text-muted); }
+
+/* ========= CTA BANNER ========= */
+.ctaBanner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+.ctaInner {
+  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,240,160,.04) 100%);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 4rem 3rem;
+  text-align: center; position: relative; overflow: hidden;
+}
+.ctaInner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, var(--accent-glow) 0%, transparent 50%);
+  pointer-events: none; animation: rotateSlow 15s linear infinite;
+}
+.ctaInner h2 { font-family: var(--serif); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 400; margin-bottom: .75rem; position: relative; }
+.ctaInner p { color: var(--text-mid); margin-bottom: 2rem; font-weight: 300; font-size: 1.05rem; position: relative; }
+
+/* ========= CONTACT ========= */
+.contactLayout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; margin-top: 3rem; }
+.contactLeft h3 { font-family: var(--serif); font-size: 1.75rem; margin-bottom: 1rem; font-weight: 400; }
+.contactLeft p { color: var(--text-muted); line-height: 1.75; margin-bottom: 2rem; font-weight: 300; font-size: .95rem; }
+.contactChannels { display: flex; flex-direction: column; gap: .75rem; }
+.chItem { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text-muted); transition: color var(--transition); font-size: .9rem; }
+.chItem:hover { color: var(--accent); }
+.chIcon {
+  width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem;
+  flex-shrink: 0; transition: border-color var(--transition), background var(--transition);
+}
+.chItem:hover .chIcon { border-color: var(--accent); background: var(--accent-glow); }
+.contactForm {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 2.5rem; position: relative; overflow: hidden;
+}
+.contactForm::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent 60%); }
+
+/* ========= RESPONSIVE ========= */
+
+/* Local keyframes for CSS Modules */
+@keyframes rotateSlow {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .servicesGrid { grid-template-columns: 1fr; }
+  .valueCards { grid-template-columns: 1fr; }
+  .contactLayout { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 768px) {
+  .processTimeline::before { left: 28px; }
+  .psMarker { width: 56px; height: 56px; font-size: 1.1rem; }
+  .processStep { gap: 1.5rem; }
+  .proofStat { padding: 0 1.25rem; }
+  .proofStat:not(:last-child)::after { display: none; }
+  .ctaInner { padding: 3rem 1.5rem; }
+  .contactForm { padding: 1.5rem; }
+}
